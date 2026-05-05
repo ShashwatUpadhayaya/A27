@@ -81,7 +81,13 @@ Pipeline stages:
 - Seed MongoDB.
 - Smoke test the frontend and API.
 
-For this local assignment, Jenkins should mount this project folder at `/workspace/A27` and mount the Docker socket so Jenkins can run Docker Compose.
+For the GitHub-backed Jenkins job, Jenkins reads this repository from:
+
+```text
+https://github.com/ShashwatUpadhayaya/A27.git
+```
+
+Jenkins still needs the Docker socket mounted so the pipeline can run Docker Compose.
 
 The prepared Jenkins job config is here:
 
@@ -106,6 +112,8 @@ Verified Jenkins result:
 ```text
 A27-Pipeline #2: SUCCESS
 ```
+
+If Jenkins shows `No Changes`, the job is probably using an inline/local pipeline script instead of `Pipeline script from SCM`. Configure it to read `Jenkinsfile` from the GitHub repository above.
 
 ## How to run without Docker
 

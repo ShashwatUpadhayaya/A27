@@ -5,16 +5,13 @@ pipeline {
     timestamps()
   }
 
-  environment {
-    APP_DIR = '/workspace/A27'
-  }
-
   stages {
     stage('Check Workspace') {
       steps {
         sh '''
           set -e
-          cd "$APP_DIR"
+          cd "$WORKSPACE"
+          git log --oneline -1
           test -f docker-compose.yml
           test -f client/Dockerfile
           test -f server/Dockerfile
@@ -28,7 +25,7 @@ pipeline {
       steps {
         sh '''
           set -e
-          cd "$APP_DIR"
+          cd "$WORKSPACE"
           docker compose config
         '''
       }
@@ -38,7 +35,7 @@ pipeline {
       steps {
         sh '''
           set -e
-          cd "$APP_DIR"
+          cd "$WORKSPACE"
           docker compose build
         '''
       }
@@ -48,7 +45,7 @@ pipeline {
       steps {
         sh '''
           set -e
-          cd "$APP_DIR"
+          cd "$WORKSPACE"
           docker compose down --remove-orphans
           docker compose up -d
         '''
@@ -59,7 +56,7 @@ pipeline {
       steps {
         sh '''
           set -e
-          cd "$APP_DIR"
+          cd "$WORKSPACE"
           docker compose exec -T server npm run seed
         '''
       }
@@ -103,7 +100,7 @@ pipeline {
   post {
     always {
       sh '''
-        cd "$APP_DIR"
+        cd "$WORKSPACE"
         docker compose ps || true
       '''
     }
