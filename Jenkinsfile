@@ -5,6 +5,10 @@ pipeline {
     timestamps()
   }
 
+  environment {
+    COMPOSE_PROJECT_NAME = 'a27'
+  }
+
   stages {
     stage('Check Workspace') {
       steps {

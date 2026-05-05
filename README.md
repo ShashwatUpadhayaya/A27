@@ -30,11 +30,11 @@ Collections:
 
 ## How to run with Docker Compose
 
-This is the containerized setup for phase two. It runs three containers:
+This is the containerized setup for phase two. It runs three services:
 
-- `a27-client`: React app served by Nginx.
-- `a27-server`: Express API.
-- `a27-mongo`: MongoDB database.
+- `client`: React app served by Nginx.
+- `server`: Express API.
+- `mongo`: MongoDB database.
 
 Start all containers:
 
@@ -88,6 +88,8 @@ https://github.com/ShashwatUpadhayaya/A27.git
 ```
 
 Jenkins still needs the Docker socket mounted so the pipeline can run Docker Compose.
+
+The pipeline sets `COMPOSE_PROJECT_NAME=a27`, so Docker Desktop groups the app as `a27`.
 
 The prepared Jenkins job config is here:
 
