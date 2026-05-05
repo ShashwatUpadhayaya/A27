@@ -6,6 +6,7 @@ This folder contains the Jenkins setup used for phase three.
 
 - `Dockerfile`: builds a Jenkins image with Docker CLI and Docker Compose.
 - `a27-pipeline-config.xml`: backup XML config for the `A27-Pipeline` job.
+- `a27-pipeline-scm-config.xml`: GitHub-backed XML config for the `A27-Pipeline` job.
 
 ## Jenkins container used
 
